@@ -1,8 +1,15 @@
 package com.example.product_service.client;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
+/**
+ * Centralize token-fetching logic
+ * Keep service layer clean- single responsibilty
+ * Uses RestTemplate to avoid dependency and keep it simple.
+ */
 
 @component
 public class Authclient {
@@ -31,5 +38,13 @@ public class Authclient {
 
         return restTemplate.getForObject(url, String.class);
     }
-}
+
+    @configuration
+    public static class RestTemplateConfig {
+
+        @Bean
+        public class RestTemplate(){
+            return new RestTemplate();
+
+    }
 }
