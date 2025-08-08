@@ -1,11 +1,17 @@
 package com.example.product_service.repository;
 
+import com.example.product_service.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
-Import java.util.List;
+import java.util.List;
+import java.util.Optional;
 
-public Interface  ProductRepository extends JpaRepository<Product, Long>{
+public interface ProductRepository extends JpaRepository<Product, Long>{
 
-    // custom finder method to search products by category.
-    List<Product> findByCategory category)
-
+    /**
+     * Find a product by its name.
+     *
+     * @param name product name
+     * @return Optional containing the product if found
+     */
+    Optional<Product> findByName(String name);
 }

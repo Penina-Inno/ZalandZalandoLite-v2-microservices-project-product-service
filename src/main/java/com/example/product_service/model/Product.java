@@ -4,21 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 
 /**
- * JPA maps the entity to a  products table in PostgreSQL.
+ * JPA maps the entity to a products table in PostgreSQL.
  * @Builder allows flexible object creation - e.g Product.builder().name("Jacket").build()
  */
-@Entity
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class product {
+@Entity
+public class Product {
     @Id
-    @GeneratedValue(Strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private double price;
     private String description;
     private Double price;
 

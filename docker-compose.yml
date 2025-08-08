@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  product-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: product-service
+    ports:
+      - "8586:8586"
+    env_file:
+      - .env
+    depends_on:
+      - product-db
+    networks:
+      - zalando-backend
+  product-db:
+    image: postgres:15
+    container_name: product-db
+    environment:
+      POSTGRES_DB: products
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    networks:
+      - zalando-backend
+
+
+networks:
+  zalando-backend:
+    external: true

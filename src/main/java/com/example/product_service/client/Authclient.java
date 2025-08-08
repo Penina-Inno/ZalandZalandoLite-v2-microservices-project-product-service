@@ -2,6 +2,8 @@ package com.example.product_service.client;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -11,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Uses RestTemplate to avoid dependency and keep it simple.
  */
 
-@component
+@Component
 public class Authclient {
 
     private final RestTemplate restTemplate;
@@ -20,6 +22,10 @@ public class Authclient {
     private String authBaseUrl;
 
     public AuthClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public Authclient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
@@ -39,7 +45,7 @@ public class Authclient {
         return restTemplate.getForObject(url, String.class);
     }
 
-    @configuration
+    @Configuration
     public static class RestTemplateConfig {
 
         @Bean
