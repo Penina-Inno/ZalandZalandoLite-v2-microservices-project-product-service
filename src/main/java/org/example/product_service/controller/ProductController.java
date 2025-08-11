@@ -3,11 +3,9 @@ package org.example.product_service.controller;
 import org.example.product_service.dto.ProductDto;
 
 import lombok.RequiredArgsConstructor;
+import org.example.product_service.model.Product;
 import org.example.product_service.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 /**
@@ -19,6 +17,7 @@ import java.util.List;
 
 @RequestMapping("/products")
 @RequiredArgsConstructor
+@RestController
 public class ProductController {
 
     private final ProductService service;
@@ -26,13 +25,13 @@ public class ProductController {
     /**
      * Internal request wrapper for product + quantity in POST body.
      */
-    public record ProductWithQuantity<Product>(Product product, int quantity) {}
+    public record ProductWithQuantity(Product product, int quantity) {}
 
 /**
  * GET /products — fetch all products with live stock quantity.
  */
 @GetMapping
-public <ProductDto> List<ProductDto> getAllProducts() {
+public List<ProductDto> getAllProducts() {
     return service.getAllProducts();
 }
 
@@ -40,7 +39,7 @@ public <ProductDto> List<ProductDto> getAllProducts() {
   * POST /products — add a product and initialize its inventory.
  */
 @PostMapping
-public <ProductDto> ProductDto addProduct(@RequestBody ProductWithQuantity request) {
+public  ProductDto addProduct(@RequestBody ProductWithQuantity request) {
         return service.addProduct(request.product(), request.quantity());
     }
 }

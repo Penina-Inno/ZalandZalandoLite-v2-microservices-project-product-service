@@ -19,18 +19,18 @@ public class ProductService {
    private final ProductRepository repository;
    private final InventoryClient inventoryClient;
 
-    public <ProductDto> List<ProductDto> getAllProducts() {
+    public  List<ProductDto> getAllProducts() {
         List<Product> products = repository.findAll();
         List<ProductDto> productsDto =  products
                 .stream()
                 .map(
                         product -> ProductMapper.toDTO(product,inventoryClient.getStockQuantity(product.getId()))
                 )
-                .collect(Collectors.toList());
+                .toList();
         return productsDto;
     }
 
-    public <ProductDto> ProductDto addProduct(Product product, int quantity) {
+    public ProductDto addProduct(Product product, int quantity) {
         Optional<Product> existing = repository.findByName(product.getName());
         if (existing.isPresent()){
             throw new RuntimeException("Product already exists !!!");
