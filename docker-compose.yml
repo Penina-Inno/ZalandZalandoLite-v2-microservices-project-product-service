@@ -18,7 +18,7 @@ services:
     image: postgres:15
     container_name: product-db
     environment:
-      POSTGRES_DB: products
+      POSTGRES_DB: product-db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
     ports:

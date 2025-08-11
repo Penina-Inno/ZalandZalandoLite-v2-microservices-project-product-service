@@ -1,4 +1,4 @@
-package com.example.product_service.dto;
+package org.example.product_service.dto;
 
 import jdk.jfr.DataAmount;
 import lombok.Data;

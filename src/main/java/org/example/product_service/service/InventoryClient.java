@@ -1,4 +1,4 @@
-package com.example.product_service.service;
+package org.example.product_service.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
